@@ -10,7 +10,7 @@ module.exports = [
       return true;
     },
     get: () => {
-      return { text: Fixtures.AppsXML };
+      return { body: Fixtures.AppsXML };
     }
   },
   {
@@ -19,7 +19,7 @@ module.exports = [
       return true;
     },
     get: () => {
-      return { text: Fixtures.ActiveAppXML };
+      return { body: Fixtures.ActiveAppXML };
     }
   },
   {
@@ -28,7 +28,7 @@ module.exports = [
       return true;
     },
     get: () => {
-      return { text: Fixtures.InfoXML };
+      return { body: Fixtures.InfoXML };
     }
   },
   {
