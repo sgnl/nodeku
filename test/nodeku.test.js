@@ -27,10 +27,11 @@ function isDeepEqual(apps, legend) {
   });
 }
 
-function wrapper(description) {
+function wrapper(description, func) {
   test(description, async t => {
     const device = await Nodeku();
     t.truthy(device);
+    func(t, device);
   });
 }
 
@@ -72,12 +73,24 @@ wrapper('-method: .active()', (t, device) => {
     });
 });
 
+wrapper('-method: .activeApp()', (t, device) => {
+  return device
+    .activeApp()
+    .then(app => {
+      t.true(Array.isArray(app), 'returns list');
+
+      const objectHasCorrectProps = !assert.deepEqual(
+        Object.keys(app), ['id', 'name', 'type', 'version']);
+      t.true(objectHasCorrectProps, 'map has correct props');
+    });
+});
+
 wrapper('-method: .info()', (t, device) => {
   return device
     .info()
     .then(info => {
       t.true(info === Object(info), 'returns a map');
-      t.is(Object.keys(info.toJS()).length, 29, 'has 29 props');
+      t.is(Object.keys(info).length, 29, 'has 29 props');
     });
 });
 
@@ -100,7 +113,7 @@ wrapper('-method: .launch()', (t, device) => {
     .apps()
     .then(apps => {
       const randomIndex = Math.floor(Math.random() * apps.size);
-      const appToLaunch = apps.toJS().splice(randomIndex, 1)[0];
+      const appToLaunch = apps.splice(randomIndex, 1)[0];
       return device.launch(appToLaunch.id);
     })
     .then(t.done);

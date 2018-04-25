@@ -1,6 +1,6 @@
 {
   "name": "nodeku",
-  "version": "1.0.13",
+  "version": "1.0.15",
   "description": "",
   "engines": {
     "node": ">=7.0.0"
@@ -14,7 +14,6 @@
   },
   "keywords": [
     "roku",
-    "immutable",
     "ssdp"
   ],
   "bugs": {
@@ -39,6 +38,7 @@
     "bluebird": "^3.4.7",
     "got": "^7.0.0",
     "node-ssdp": "^3.2.1",
+    "npm": "^6.0.0",
     "superagent": "^3.5.2",
     "xml2js": "^0.4.17"
   },
